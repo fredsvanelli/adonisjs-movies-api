@@ -3,10 +3,13 @@ import { StatusCodes } from 'http-status-codes';
 
 import Category from 'App/Models/Category';
 import CreateCategoryValidator from 'App/Validators/Category/CreateCategoryValidator';
+import GetCategoriesValidator from 'App/Validators/Category/GetCategoriesValidator';
 import UpdateCategoryValidator from 'App/Validators/Category/UpdateCategoryValidator';
 
 export default class CategoriesController {
   public async index({ request }: HttpContextContract): Promise<Category[]> {
+    await request.validate(GetCategoriesValidator);
+
     return await Category.query().orderBy(
       request.input('order_by', 'name'),
       request.input('order', 'asc')

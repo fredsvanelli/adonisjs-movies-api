@@ -13,9 +13,13 @@ Route.post('auth/login', 'AuthController.login');
 Route.group(() => {
   Route.get('/', 'CategoriesController.index');
   Route.get('/:slug', 'CategoriesController.show');
-  Route.post('/', 'CategoriesController.store');
-  Route.put('/:slug', 'CategoriesController.update');
-  Route.delete('/:slug', 'CategoriesController.destroy');
+
+  /* Auth */
+  Route.group(() => {
+    Route.post('/', 'CategoriesController.store');
+    Route.put('/:slug', 'CategoriesController.update');
+    Route.delete('/:slug', 'CategoriesController.destroy');
+  }).middleware('auth');
 }).prefix('/categories');
 
 /* Route not found */

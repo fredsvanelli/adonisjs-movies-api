@@ -16,5 +16,7 @@ export default class UpdateCategoryValidator {
 
   public messages = {
     'name.unique': 'Another category with this name already exists',
+    'name.required': "The 'name' field is required",
+    'name.string': "The 'name' field must be a string",
   };
 }
